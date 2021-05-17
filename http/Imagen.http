@@ -1,0 +1,25 @@
+GET http://localhost:8082/imagen/1
+###
+GET http://localhost:8082/imagen
+###
+POST http://localhost:8082/imagen
+Content-Type:application/json
+Accept:application/json
+
+{
+  "src_imagen":"/img/imagen3.jpg",
+  "nombre": "imagen3"
+}
+###
+DELETE http://localhost:8082/imagen/1
+###
+PUT http://localhost:8082/imagen
+Content-Type:application/json
+Accept:application/json
+
+{
+  "imagen_id": 2,
+  "src_imagen":"/img/imagen2.jpg",
+  "nombre": "imagen2"
+}
+###

@@ -1,0 +1,41 @@
+GET http://localhost:8082/persona/3
+###
+GET http://localhost:8082/persona
+###
+POST http://localhost:8082/persona
+Content-Type:application/json
+Accept:application/json
+
+{
+   "direccion_id":1,
+   "tipo_identificacion_id": 1,
+   "nombre": "Sebastian",
+   "apellido_paterno":"Lopez",
+   "apellido_materno":"Villa",
+   "apellido_casado":"",
+   "telefono":"73225878",
+   "correo_electronico":"Orlando@gmail.com",
+   "numero_identificacion": "4545452 LP",
+   "fecha_nacimiento":"1958-09-28"
+
+
+}
+###
+DELETE http://localhost:8082/persona/44
+###
+PUT http://localhost:8082/persona
+Content-Type:application/json
+Accept:application/json
+
+{
+  "id_persona":4,
+  "nombre": "Rolando",
+  "apellido_paterno":"Peres",
+  "apellido_materno":"Florez",
+  "apellido_casado":"",
+  "telefono":"73225878",
+  "fecha_nacimiento":1,
+  "id_direccion":1,
+  "correo_electronico":"Rolandoo@gmail.com"
+}
+###

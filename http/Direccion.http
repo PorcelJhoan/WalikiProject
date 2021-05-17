@@ -1,0 +1,35 @@
+GET http://localhost:8082/direccion/2
+###
+GET http://localhost:8082/direccion
+###
+POST http://localhost:8082/direccion
+Content-Type:application/json
+Accept:application/json
+
+{
+  "zona":"Perez ",
+  "calle": "calle 28",
+  "Longitud":17.15151,
+  "Latitud":28.15512,
+  "numero": "1233-F"
+
+}
+###
+DELETE http://localhost:8082/direccion/44
+###
+PUT http://localhost:8082/direccion
+Content-Type:application/json
+Accept:application/json
+
+{
+  "id_persona":4,
+  "nombre": "Rolando",
+  "apellido_paterno":"Peres",
+  "apellido_materno":"Florez",
+  "apellido_casado":"",
+  "telefono":"73225878",
+  "fecha_nacimiento":1,
+  "id_direccion":1,
+  "correo_electronico":"Rolandoo@gmail.com"
+}
+###
