@@ -1,5 +1,5 @@
 package com.example.Waliki.dao;
-
+/*
 import com.example.Waliki.dto.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,9 @@ public class DireccionDao {
 
     public Direccion CrearDireccion(Direccion ob)throws SQLException {
         ob.direccion_id=sequenceDao.getLLaveprincipal("direccion");
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO direccion(direccion_id,zona,calle,Longitud,Latitud,numero)" + " VALUES (?,?,?,?,?,?)");
             preesta.setInt(1, ob.direccion_id);
@@ -35,14 +36,22 @@ public class DireccionDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public List<Direccion> SeleccionarTodasDirecciones() throws SQLException {
         List<Direccion> array=new ArrayList<>();
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select direccion_id,zona,calle,Longitud,Latitud,numero from direccion ");
             while(res.next()){
@@ -57,15 +66,23 @@ public class DireccionDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return array;
     }
     public Direccion SeleccionarDireccion(Integer direccionId) throws SQLException {
-
+        Connection con=null;
         Direccion ob=new Direccion();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select direccion_id,zona,calle,Longitud,Latitud,numero from direccion WHERE direccion_id="+direccionId);
             if(res.next()){
@@ -80,28 +97,44 @@ public class DireccionDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public Direccion EliminarDireccion(Integer direccionId) throws SQLException {
-
+        Connection con=null;
         Direccion ob=new Direccion();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             stat.execute("delete from direccion WHERE direccion_id="+direccionId);
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
     public Direccion ActualizarDireccion(Direccion ob) throws SQLException {
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE direccion SET zona=?,calle=?,Longitud=?,Latitud=?,numero=? WHERE direccion_id=?");
@@ -115,8 +148,19 @@ public class DireccionDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
+
+
 }
+*/

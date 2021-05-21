@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.Tipo_identificacionDao;
@@ -37,3 +38,4 @@ public class GestionTipo_IdentificacionBl {
     }
 
 }
+*/

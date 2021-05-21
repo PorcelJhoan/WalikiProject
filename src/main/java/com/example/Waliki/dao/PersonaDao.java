@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.dao;
 
 import com.example.Waliki.dto.Persona;
@@ -22,8 +23,9 @@ public class PersonaDao {
 
     public Persona CrearPersona(Persona ob)throws SQLException{
         ob.persona_id=sequenceDao.getLLaveprincipal("persona");
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
 
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO persona(persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico,tipo_identificacion_id,numero_identificacion) VALUES (?,?,?,?,?,?,TO_DATE(?,'YYYYMMDD'),?,?,?,?)");
@@ -42,15 +44,23 @@ public class PersonaDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
 
     public List<Persona> SeleccionarTodasPersonas() throws SQLException {
         List<Persona> array=new ArrayList<>();
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico,tipo_identificacion_id,numero_identificacion from persona ");
             while(res.next()){
@@ -67,15 +77,23 @@ public class PersonaDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return array;
     }
     public Persona SeleccionarPersona(Integer PersonId) throws SQLException {
-
+        Connection con=null;
         Persona ob=new Persona();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico from persona WHERE persona_id="+PersonId);
             if(res.next()){
@@ -90,28 +108,45 @@ public class PersonaDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public Persona EliminarPersona(Integer PersonId) throws SQLException {
         System.out.println("variable :"+PersonId);
+        Connection con=null;
         Persona ob=new Persona();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             stat.execute("delete from persona WHERE persona_id="+PersonId);
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
     public Persona ActualizarPersona(Persona ob) throws SQLException {
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE persona SET nombre =?, apellido_paterno=?, apellido_materno=?, apellido_casado=?, telefono=?, fecha_nacimiento=?, direccion_id=?, correo_electronico=? WHERE persona_id=?");
@@ -128,9 +163,18 @@ public class PersonaDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
 }
+*/

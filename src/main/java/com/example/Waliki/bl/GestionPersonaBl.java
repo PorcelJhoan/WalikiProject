@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.PersonaDao;
@@ -36,3 +37,4 @@ public class GestionPersonaBl {
         return personaDao.ActualizarPersona(ob);
     }
 }
+*/

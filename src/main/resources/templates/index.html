@@ -1,35 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <link th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" rel="stylesheet">
     <script th:href="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
-    <script th:href="/js/bootstrap.js" src="../static/js/bootstrap.js"></script>
-    <title>Title</title>
+    <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <title>WALIKI</title>
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar w/ text</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
-            <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
+<body th:background="@{/images/gg.jpg}">
+
+<container>
+    <div class="container mt-5">
+    <div class="input-group col-md-12">
+
+
+            <form class="row" method="post" th:method="POST" th:action="@{/A_emprendedor}" th:object=${Busqueda}>
+            <div class=""><input   id="busqueda"  name="busqueda" type="search" class="form-control rounded bg-dark text-white col-md-6" placeholder="Search" aria-label="Search" aria-describedby="search-addon" /></div>
+
+            <div class=""><button type="submit"  class="btn btn-outline-primary">search</button></div>
+            </form>
+
+    </div>
+    </div>
+
+    <div class="container mt-5">
+
+        <div class="">
+        <div th:each="e:${emp}" class="row mt-4 rounded-pill border border-dark p-3 mb-2 " style="background: #04414d;color: white;font-family: 'Comic Sans MS'">
+            <div class="row">
+                <div class="col-md-4">
+                    <img th:src="@{/images/imagen1.jpg}" src="/images/${imagen1.jpg}" class="img-fluid rounded-circle">
+
+                </div>
+                <div class="col-md-7 ">
+                    <div class="row">
+
+                        <div class="col-md-8 .fs-2 border-secondary mb-3">
+
+                           <h7>PROYECTOS PUBLICADOS</h7> <h6 th:text="${e.numero_proyectos}"></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 .fs-2">
+                            <h7 >Nombre : </h7> <h6 th:text="${e.nombre}" ></h6>
+                        </div>
+                        <div class="col-md-6 .fs-2">
+                            <h7 th:text="${e.tipo_identificacion}"> </h7> <h6 th:text="${e.numero_identificacion}" ></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 .fs-2">
+                            <h7 >Telefono : </h7> <h6 th:text="${e.telefono}" ></h6>
+
+                        </div>
+                        <div class="col-md-6 fs-6">
+                            <h7 >Correo : </h7> <h6 th:text="${e.correo}" ></h6>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 .fs-2">
+                            <h7 >Nro Cuenta : </h7> <h6 th:text="${e.numero_cuenta}" ></h6>
+
+                        </div>
+                        <div class="col-md-6 .fs-2">
+                            <h7 >Ciudad : </h7> <h6 th:text="${e.ciudad}" ></h6>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-1 position-relative ">
+                    <a class=" btn btn-warning rounded-circle fs-7" style="height:75px;margin-top: 25px" th:href="@{/A_editar_emprendedor/${e.persona_id}/${e.emprendedor_id}/${e.direccion_id}}">
+                        EDIT
+                    </a>
+                    <a class="btn btn-danger rounded-circle fs-7 " style="height:75px;margin-top: 25px">
+                      ELIM
+                    </a>
+
+
+                </div>
+            </div>
+
         </div>
     </div>
-</nav>
+    </div>
+</container>
 </body>
 </html>

@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.dao;
 
 import com.example.Waliki.dto.Tipo_identificacion;
@@ -21,8 +22,9 @@ public class Tipo_identificacionDao {
 
     public Tipo_identificacion CrearTipoIdentificacion(Tipo_identificacion ob)throws SQLException {
         ob.tipo_identificacion_id=sequenceDao.getLLaveprincipal("tipo_identificacion");
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO tipo_identificacion(tipo_identificacion_id,tipo_identificacion)" + " VALUES (?,?)");
             preesta.setInt(1, ob.tipo_identificacion_id);
@@ -32,14 +34,22 @@ public class Tipo_identificacionDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public List<Tipo_identificacion> SeleccionarTiposIdentificacion() throws SQLException {
         List<Tipo_identificacion> array=new ArrayList<>();
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select tipo_identificacion_id,tipo_identificacion from tipo_identificacion ");
             while(res.next()){
@@ -51,15 +61,23 @@ public class Tipo_identificacionDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return array;
     }
     public Tipo_identificacion SeleccionarIdentificacion(Integer tipoidenId) throws SQLException {
-
+        Connection con=null;
         Tipo_identificacion ob=new Tipo_identificacion();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select tipo_identificacion_id,tipo_identificacion from tipo_identificacion WHERE tipo_identificacion_id="+tipoidenId);
             if(res.next()){
@@ -70,28 +88,44 @@ public class Tipo_identificacionDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public Tipo_identificacion EliminarTipoIdentificacion(Integer tipoidenId) throws SQLException {
-
+        Connection con=null;
         Tipo_identificacion ob=new Tipo_identificacion();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             stat.execute("delete from tipo_identificacion WHERE tipo_identificacion_id="+tipoidenId);
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
     public Tipo_identificacion ActualizarTipoIdentificacion(Tipo_identificacion ob) throws SQLException {
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE imagen SET tipo_identificacion=? WHERE tipo_identificacion_id=?");
@@ -102,8 +136,17 @@ public class Tipo_identificacionDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 }
+*/

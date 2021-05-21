@@ -1,4 +1,4 @@
-package com.example.Waliki.api;
+/*package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionEmprendedorBl;
 import com.example.Waliki.dto.Emprendedor;
@@ -64,3 +64,4 @@ public class EmprendedorController {
 
 
 }
+*/

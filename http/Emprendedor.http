@@ -13,9 +13,9 @@ Accept:application/json
   "usuario_id": 11
 }
 ###
-DELETE http://localhost:8082/Emprendedor/1
+DELETE http://localhost:8083/Emprendedor/1
 ###
-PUT http://localhost:8082/Emprendedor
+PUT http://localhost:8083/Emprendedor
 Content-Type:application/json
 Accept:application/json
 
@@ -24,5 +24,31 @@ Accept:application/json
   "tipo_emprendimiento_id":1,
   "contrato_id":1,
   "usuario_id": 11
+}
+###
+
+
+
+
+
+
+
+
+POST http://localhost:8083/emprendedor
+Content-Type: application/json
+Accept:application/json
+
+{
+  "busqueda":"robe"
+}
+###
+
+POST http://localhost:8083/proyecto
+Content-Type: application/json
+Accept:application/json
+
+{
+  "fecha_inicio":"2021/10/10",
+  "fecha_fin":"2022/11/21"
 }
 ###

@@ -1,7 +1,7 @@
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.UsuarioDao;
-import com.example.Waliki.dto.Usuario;
+import waliki.demo.dto.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

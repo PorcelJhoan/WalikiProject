@@ -1,7 +1,31 @@
-package com.example.Waliki.dto;
+package waliki.demo.dto;
 
 public class Imagen {
-    public Integer imagen_id;
-    public String src_imagen;
-    public String nombre;
+    private  Integer imagen_id;
+    private String src_imagen;
+    private String nombre;
+
+    public Integer getImagen_id() {
+        return imagen_id;
+    }
+
+    public void setImagen_id(Integer imagen_id) {
+        this.imagen_id = imagen_id;
+    }
+
+    public String getSrc_imagen() {
+        return src_imagen;
+    }
+
+    public void setSrc_imagen(String src_imagen) {
+        this.src_imagen = src_imagen;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 }

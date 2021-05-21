@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.ImagenDao;
@@ -35,3 +36,4 @@ public class GestionImagenBl {
         return imagenDao.ActualizarImagen(ob);
     }
 }
+*/

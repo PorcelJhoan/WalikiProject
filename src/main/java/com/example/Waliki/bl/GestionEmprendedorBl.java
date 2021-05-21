@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.EmprendedorDao;
@@ -35,3 +36,4 @@ public class GestionEmprendedorBl {
         return emprendedorDao.ActualizarEmprendedor(ob);
     }
 }
+*/

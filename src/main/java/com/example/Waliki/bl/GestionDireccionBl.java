@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.bl;
 
 import com.example.Waliki.dao.DireccionDao;
@@ -35,3 +36,4 @@ public class GestionDireccionBl {
         return direccionDao.ActualizarDireccion(ob);
     }
 }
+*/

@@ -1,4 +1,5 @@
-package com.example.Waliki.api;
+
+/*package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionPersonaBl;
 import com.example.Waliki.dto.Persona;
@@ -72,3 +73,4 @@ public class PersonaController {
         return gestionPersonaBl.ActualizarPersona(ob);
     }
 }
+*/

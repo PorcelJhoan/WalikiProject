@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionImagenBl;
@@ -62,3 +63,4 @@ public class ImagenController {
         return gestionImagenBl.ActualizarImagen(ob);
     }
 }
+*/

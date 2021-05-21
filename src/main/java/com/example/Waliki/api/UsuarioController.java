@@ -1,7 +1,9 @@
 package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionUsuarioBl;
-import com.example.Waliki.dto.Usuario;
+import com.example.Waliki.dto.ResponseDto;
+
+import waliki.demo.dto.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -19,39 +21,43 @@ public class UsuarioController {
     private GestionUsuarioBl gestionUsuarioBl;
 
     @GetMapping(path= "/usuario")
-    public List<Usuario> SeleccionarTodosUsuarios() throws SQLException {
-        return gestionUsuarioBl.SeleccionarTodosUsuarios();
+    public ResponseDto SeleccionarTodosUsuarios() throws SQLException {
+        return new ResponseDto( true,gestionUsuarioBl.SeleccionarTodosUsuarios(), null);
+
     }
 
     @GetMapping(path= "/usuario/{usuarioId}")
-    public Usuario SeleccionarUsuario(@PathVariable Integer usuarioId) throws SQLException {
+    public ResponseDto SeleccionarUsuario(@PathVariable Integer usuarioId) throws SQLException {
         Usuario usuario = gestionUsuarioBl.SeleccionarUsuario(usuarioId);
-        if(usuario.usuario_id !=null){
-            return gestionUsuarioBl.SeleccionarUsuario(usuarioId);
+        if(usuario.getUsuario_id() !=null){
+
+            return new ResponseDto(false, gestionUsuarioBl.SeleccionarUsuario(usuarioId), "");
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+            return new ResponseDto( false, null, "id inexistente");
         }
     }
 
     @PostMapping(path= "/usuario")
-    public Usuario CrearUsuario(@RequestBody Usuario usuario) throws SQLException {
+    public ResponseDto CrearUsuario(@RequestBody Usuario usuario) throws SQLException {
         Usuario usuario2 = gestionUsuarioBl.CrearUsuario(usuario);
-        if(usuario2.persona_id !=null){
-            return gestionUsuarioBl.CrearUsuario(usuario);
+        if(usuario2.getUsuario_id() !=null){
+            return new ResponseDto(false, gestionUsuarioBl.CrearUsuario(usuario), "");
+
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+            return new ResponseDto( false, null, "id inexistente");
         }
 
     }
 
     @DeleteMapping(path= "/usuario/{usuarioId}")
-    public Usuario EliminarUsuario(@PathVariable Integer usuarioId) throws SQLException {
+    public ResponseDto EliminarUsuario(@PathVariable Integer usuarioId) throws SQLException {
         Usuario usuario = gestionUsuarioBl.EliminarUsuario(usuarioId);
 
-        if(usuario.usuario_id !=null){
-            return gestionUsuarioBl.EliminarUsuario(usuarioId);
+        if(usuario.getUsuario_id() !=null){
+            return new ResponseDto(false, gestionUsuarioBl.EliminarUsuario(usuarioId), "");
+
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+            return new ResponseDto( false, null, "id inexistente");
         }
 
 

@@ -1,4 +1,4 @@
-package com.example.Waliki.dao;
+/*package com.example.Waliki.dao;
 
 import com.example.Waliki.dto.Emprendedor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,9 @@ public class EmprendedorDao {
 
     public Emprendedor CrearEmprendedor(Emprendedor ob)throws SQLException {
         ob.emprendedor_id=sequenceDao.getLLaveprincipal("emprendedor");
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
 
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO emprendedor(emprendedor_id,imagen_id,tipo_emprendimiento_id,contrato_id,usuario_id)" + " VALUES (?,?,?,?,?)");
@@ -36,14 +37,22 @@ public class EmprendedorDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public List<Emprendedor> SeleccionarEmprendedores() throws SQLException {
         List<Emprendedor> array=new ArrayList<>();
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select emprendedor_id,imagen_id,tipo_emprendimiento_id,contrato_id,usuario_id from emprendedor ");
             while(res.next()){
@@ -57,15 +66,23 @@ public class EmprendedorDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return array;
     }
     public Emprendedor SeleccionarEmprendedor(Integer usuarioId) throws SQLException {
-
+        Connection con=null;
         Emprendedor ob=new Emprendedor();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select emprendedor_id,imagen_id,tipo_emprendimiento_id,contrato_id,usuario_id from emprendedor WHERE emprendedor_id="+usuarioId);
             if(res.next()){
@@ -79,28 +96,44 @@ public class EmprendedorDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public Emprendedor EliminarEmprendedor(Integer emprendedorId) throws SQLException {
-
+        Connection con=null;
         Emprendedor ob=new Emprendedor();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             stat.execute("delete from emprendedor WHERE emprendedor_id="+emprendedorId);
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
     public Emprendedor ActualizarEmprendedor(Emprendedor ob) throws SQLException {
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE emprendedor SET emprendedor_id=?,imagen_id=?,tipo_emprendimiento_id=?,contrato_id=?,usuario_id=? WHERE usuario_id=?");
@@ -113,8 +146,17 @@ public class EmprendedorDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 }
+*/

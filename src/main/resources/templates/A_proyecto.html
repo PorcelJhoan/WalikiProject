@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <link th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" rel="stylesheet">
+  <script th:href="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+  <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+  <title>WALIKI</title>
+</head>
+<body th:background="@{/images/gg.jpg}">
+
+<container>
+
+  <div class="container">
+
+
+
+
+  <div class="container mt-5">
+    <div class="input-group row">
+
+
+      <form class="row" method="post" th:method="POST" th:action="@{/A_proyecto}" th:object=${Busqueda_fecha}>
+        <div class="col-md-5"> <input type="date" id="fecha_inicio" name="fecha_inicio"></div>
+
+        <div class="col-md-5"> <input type="date" id="fecha_fin" name="fecha_fin"></div>
+        <div class="col-md-2"><button type="submit"  class="btn btn-outline-primary">search</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+
+    <div class="card">
+      <div th:each="e:${emp}" class="row mt-4  border border-dark p-3 mb-2 " style="background: #343a40;color: white;font-family: 'Comic Sans MS'">
+        <div class="row">
+          <div class="col-md-4">
+            <img th:src="@{/images/imagen1.jpg}" src="/images/${imagen1.jpg}" class="img-fluid ">
+
+          </div>
+          <div class="col-md-6 ">
+            <div class="row">
+
+              <div class="col-md-6 .fs-2 border-secondary mb-3">
+                <h7>Nombre proyecto : </h7> <h6 th:text="${e.nombre}"></h6>
+              </div>
+              <div class="col-md-6 .fs-2 border-secondary mb-3">
+                <h7>Nombre Emprendedor : </h7> <h6 th:text="${e.nombrep}"></h6>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6 .fs-2">
+                <h7 >Fecha Publicacion : </h7> <h6 th:text="${e.fecha_publicacion}" ></h6>
+              </div>
+              <div class="col-md-6 .fs-2">
+                <h7 >Fecha Conclusion </h7> <h6 th:text="${e.fecha_fin}" ></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 .fs-2">
+                <h7 >Descripcion: </h7> <h6 th:text="${e.Descripcion}" ></h6>
+
+              </div>
+              <div class="col-md-6 fs-6">
+                <h7 >Monto Requerido </h7> <h6 th:text="${e.Monto_requerido}" ></h6>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 .fs-2">
+                <h7 >Monto Recaudado </h7> <h6 th:text="${e.Monto_recaudado}" ></h6>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-2 position-relative ">
+            <div class="row">
+              <div class="btn-info fs-8"><h8 th:text="${e.estado}"> </h8></div>
+            </div>
+            <a class=" btn btn-warning fs-7" style="height:75px;margin-top: 25px" >
+              EDIT
+            </a>
+            <a class="btn btn-danger fs-7 " style="height:75px;margin-top: 25px">
+              ELIM
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</container>
+</body>
+</html>

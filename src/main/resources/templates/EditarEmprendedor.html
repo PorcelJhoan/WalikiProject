@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" rel="stylesheet">
+  <script th:href="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+  <script th:href="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <title>EditarEmprendedor</title>
+</head>
+<body>
+<div class="container mt-4">
+  <div class="col-ms-9">
+    <form th:action="@{/A_editar_emprendedor}" th:object="${A_Emprendedor}" method="POST" th:method="POST">
+      <div class="card" th:each="e:${emp}">
+        <div class="card-header row">
+          <h3>EMPRENDEDOR</h3>
+        </div>
+          <div class="card-body ">
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">ID PERSONA</label>
+              <input class="col-md-8" type="text" name="persona_id" id="persona_id"th:value="${e.persona_id}" >
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">ID DIRECCION</label>
+              <input class="col-md-8" type="text" name="direccion_id" id="direccion_id" th:value="${e.direccion_id}">
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">ID EMPRENDEDOR</label>
+              <input class="col-md-8" type="text" name="emprendedor_id" id="emprendedor_id" th:value="${e.emprendedor_id}">
+            </div>
+
+              <div class="row input-group p-2 bg-light border">
+                <label class="form-label col-md-4">NOMBRE</label>
+                <input class="col-md-8" type="text" name="nombre" id="nombre"th:value="${e.nombre}" >
+              </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">TELEFONO</label>
+              <input class="col-md-8" type="text" name="telefono" id="telefono" th:value="${e.telefono}">
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">CORREO</label>
+              <input class="col-md-8" type="text" name="correo" id="correo" th:value="${e.correo}">
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">Nro IDENTIFICACION</label>
+              <input class="col-md-8" type="text" name="numero_identificacion" id="numero_identificacion" th:value="${e.numero_identificacion}">
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">Nro CUENTA</label>
+              <input class="col-md-8" type="text" name="numero_cuenta" id="numero de cuenta" th:value="${e.numero_cuenta}">
+            </div>
+
+            <div class="row input-group p-2 bg-light border">
+              <label class="form-label col-md-4">CIUDAD</label>
+              <input class="col-md-8" type="text" name="ciudad" id="ciudad" th:value="${e.ciudad}">
+            </div>
+
+
+
+            <div class="card-footer row">
+
+              <input type="submit" value="Guardar" class="btn btn-success">
+            </div>
+
+          </div>
+        </div>
+
+    </form>
+  </div>
+</div>
+</body>
+</html>

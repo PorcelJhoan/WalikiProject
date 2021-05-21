@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.dao;
 
 import com.example.Waliki.dto.Imagen;
@@ -19,8 +20,9 @@ public class ImagenDao {
 
     public Imagen CrearImagen(Imagen ob)throws SQLException {
         ob.imagen_id=sequenceDao.getLLaveprincipal("imagen");
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO imagen(imagen_id,src_imagen,nombre)" + " VALUES (?,?,?)");
             preesta.setInt(1, ob.imagen_id);
@@ -30,14 +32,22 @@ public class ImagenDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public List<Imagen> SeleccionarTodasImagenes() throws SQLException {
         List<Imagen> array=new ArrayList<>();
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+           con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select imagen_id,src_imagen,nombre from imagen ");
             while(res.next()){
@@ -49,15 +59,23 @@ public class ImagenDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return array;
     }
     public Imagen SeleccionarImagen(Integer imagenId) throws SQLException {
-
+        Connection con=null;
         Imagen ob=new Imagen();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select imagen_id,src_imagen,nombre from imagen WHERE imagen_id="+imagenId);
             if(res.next()){
@@ -69,28 +87,44 @@ public class ImagenDao {
             }
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
         return ob;
     }
     public Imagen EliminarImagen(Integer ImagenId) throws SQLException {
-
+        Connection con=null;
         Imagen ob=new Imagen();
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             stat.execute("delete from imagen WHERE imagen_id="+ImagenId);
 
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 
     public Imagen ActualizarImagen(Imagen ob) throws SQLException {
-
+        Connection con=null;
         try{
-            Connection con=dataSource.getConnection();
+            con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE imagen SET src_imagen=?,nombre=? WHERE imagen_id=?");
@@ -101,8 +135,17 @@ public class ImagenDao {
             preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
+        }finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException sqex) {
+                    // No hacer nada intencionalemte;
+                }
+            }
         }
 
         return ob;
     }
 }
+*/

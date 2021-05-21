@@ -1,3 +1,4 @@
+/*
 package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionTipo_IdentificacionBl;
@@ -61,3 +62,4 @@ public class Tipo_identificacionController {
     }
 
 }
+*/

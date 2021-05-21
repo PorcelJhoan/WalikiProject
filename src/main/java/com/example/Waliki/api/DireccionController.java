@@ -1,4 +1,4 @@
-package com.example.Waliki.api;
+/*package com.example.Waliki.api;
 
 import com.example.Waliki.bl.GestionDireccionBl;
 import com.example.Waliki.dto.Direccion;
@@ -61,3 +61,4 @@ public class DireccionController {
         return gestionDireccionBl.ActualizarDireccion(ob);
     }
 }
+*/
