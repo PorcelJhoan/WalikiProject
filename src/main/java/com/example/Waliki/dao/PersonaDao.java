@@ -1,12 +1,7 @@
-/*
 package com.example.Waliki.dao;
-
 import com.example.Waliki.dto.Persona;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,31 +10,44 @@ import java.util.List;
 @Service
 public class PersonaDao {
 
+    /**
+     * Inicializamos sequenceDao para simular el "AUTO INCREMENT" de las llaves PRIMARIAS requeridas"
+     **/
+
     @Autowired
     private SequenceDao sequenceDao;
+
+    /**
+     * Inicializamos datasource para la conexión a la base de datos
+     **/
 
     @Autowired
     public DataSource dataSource;
 
+    /**
+     * La siguiente función se encargará  de almacenar un persona en la tabla "persona",
+     * el cual tiene como parámetro el objeto "Persona", y una vez realizado el almacenamiento,
+     * retornará el ya mencionado objeto.
+     **/
+
     public Persona CrearPersona(Persona ob)throws SQLException{
-        ob.persona_id=sequenceDao.getLLaveprincipal("persona");
+        ob.setPersona_id(sequenceDao.getLLaveprincipal("persona"));
         Connection con=null;
         try{
             con=dataSource.getConnection();
-
             PreparedStatement preesta;
             preesta = con.prepareStatement("INSERT INTO persona(persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico,tipo_identificacion_id,numero_identificacion) VALUES (?,?,?,?,?,?,TO_DATE(?,'YYYYMMDD'),?,?,?,?)");
-            preesta.setInt(1, ob.persona_id);
-            preesta.setString(2, ob.nombre);
-            preesta.setString(3, ob.apellido_paterno);
-            preesta.setString(4, ob.apellido_materno);
-            preesta.setString(5, ob.apellido_casado);
-            preesta.setString(6, ob.telefono);
-            preesta.setString(7, ob.fecha_nacimiento);
-            preesta.setInt(8, ob.direccion_id);
-            preesta.setString(9, ob.correo_electronico);
-            preesta.setInt(10, ob.tipo_identificacion_id);
-            preesta.setString(11, ob.numero_identificacion);
+            preesta.setInt(1, ob.getPersona_id());
+            preesta.setString(2, ob.getNombre());
+            preesta.setString(3, ob.getApellido_paterno());
+            preesta.setString(4, ob.getApellido_materno());
+            preesta.setString(5, ob.getApellido_casado());
+            preesta.setString(6, ob.getTelefono());
+            preesta.setString(7, ob.getFecha_nacimiento());
+            preesta.setInt(8, ob.getDireccion_id());
+            preesta.setString(9, ob.getCorreo_electronico());
+            preesta.setInt(10, ob.getTipo_identificacion_id());
+            preesta.setString(11, ob.getNumero_identificacion());
             preesta.executeUpdate();
             preesta.close();
         }catch (Exception ex){
@@ -48,13 +56,16 @@ public class PersonaDao {
             if (con != null) {
                 try {
                     con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
+                } catch (SQLException sqex) {}
             }
         }
         return ob;
     }
+
+    /**
+     * La siguiente función se encargará  de seleccionar todas las personas de la tabla "persona",
+     * el cual no tiene parámetros  y una vez realizada la busqueda, retornará un array de objetos "Persona".
+     **/
 
     public List<Persona> SeleccionarTodasPersonas() throws SQLException {
         List<Persona> array=new ArrayList<>();
@@ -65,14 +76,14 @@ public class PersonaDao {
             ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico,tipo_identificacion_id,numero_identificacion from persona ");
             while(res.next()){
                 Persona ob=new Persona();
-                ob.persona_id=res.getInt("persona_id");
-                ob.nombre=res.getString("nombre");
-                ob.apellido_paterno=res.getString("apellido_paterno");
-                ob.apellido_materno=res.getString("apellido_materno");
-                ob.apellido_casado=res.getString("apellido_casado");
-                ob.telefono=res.getString("telefono");
-                ob.fecha_nacimiento=res.getString("fecha_nacimiento");
-                ob.correo_electronico=res.getString("correo_electronico");
+                ob.setPersona_id(res.getInt("persona_id"));
+                ob.setNombre(res.getString("nombre"));
+                ob.setApellido_paterno(res.getString("apellido_paterno"));
+                ob.setApellido_materno(res.getString("apellido_materno"));
+                ob.setApellido_casado(res.getString("apellido_casado"));
+                ob.setTelefono(res.getString("telefono"));
+                ob.setFecha_nacimiento(res.getString("fecha_nacimiento"));
+                ob.setCorreo_electronico(res.getString("correo_electronico"));
                 array.add(ob);
             }
         }catch (Exception ex){
@@ -81,67 +92,66 @@ public class PersonaDao {
             if (con != null) {
                 try {
                     con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
+                } catch (SQLException sqex) {}
             }
         }
-
         return array;
     }
+
+    /**
+     * La siguiente función se encargará  seleccionar una persona de la tabla "persona",
+     * el cual tiene como parámetro un entero simulando ser el id de persona, y una vez realizado la busqueda,
+     * retornará un objeto Persona.
+     **/
+
     public Persona SeleccionarPersona(Integer PersonId) throws SQLException {
-        Connection con=null;
+
         Persona ob=new Persona();
-        try{
-            con=dataSource.getConnection();
-            Statement stat =con.createStatement();
-            ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico from persona WHERE persona_id="+PersonId);
+        try(Connection  con=dataSource.getConnection();
+            PreparedStatement pre=con.prepareStatement("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico from persona WHERE persona_id=?");)
+        {
+            pre.setInt(1, PersonId);
+            ResultSet res=pre.executeQuery();
             if(res.next()){
-                ob.persona_id=res.getInt("persona_id");
-                ob.nombre=res.getString("nombre");
-                ob.apellido_paterno=res.getString("apellido_paterno");
-                ob.apellido_materno=res.getString("apellido_materno");
-                ob.telefono=res.getString("telefono");
-                ob.correo_electronico=res.getString("correo_electronico");
+                ob.setPersona_id(res.getInt("persona_id"));
+                ob.setNombre(res.getString("nombre"));
+                ob.setApellido_paterno(res.getString("apellido_paterno"));
+                ob.setApellido_materno(res.getString("apellido_materno"));
+                ob.setTelefono(res.getString("telefono"));
+                ob.setCorreo_electronico(res.getString("correo_electronico"));
             }else{
                 ob=null;
             }
         }catch (Exception ex){
             ex.printStackTrace();
-        }finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
-            }
         }
         return ob;
     }
-    public Persona EliminarPersona(Integer PersonId) throws SQLException {
-        System.out.println("variable :"+PersonId);
-        Connection con=null;
-        Persona ob=new Persona();
-        try{
-            con=dataSource.getConnection();
-            Statement stat =con.createStatement();
-            stat.execute("delete from persona WHERE persona_id="+PersonId);
 
+    /**
+     * La siguiente función se encargará  eliminar una Persona de la tabla "persona",
+     * el cual tiene como parámetro un entero simulando ser el id de la persona, y una vez realizada la eliminación,
+     * retornará un objeto Persona.
+     **/
+
+    public Persona EliminarPersona(Integer PersonId) throws SQLException {
+        Persona ob=new Persona();
+        try(Connection  con=dataSource.getConnection();
+            PreparedStatement pre=con.prepareStatement("delete from persona WHERE persona_id=?"); )
+        {
+            pre.setInt(1, PersonId);
+            pre.executeQuery();
         }catch (Exception ex){
             ex.printStackTrace();
-        }finally {
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
-            }
         }
-
         return ob;
     }
+
+    /**
+     * La siguiente función se encargará  actualizar una persona de la tabla "persona",
+     * el cual tiene como parámetro un objeto "Persona", y una vez realizado la actualizacion,
+     * retornará un objeto Persona.
+     **/
 
     public Persona ActualizarPersona(Persona ob) throws SQLException {
         Connection con=null;
@@ -150,15 +160,15 @@ public class PersonaDao {
             Statement stat =con.createStatement();
             PreparedStatement preesta;
             preesta = con.prepareStatement("UPDATE persona SET nombre =?, apellido_paterno=?, apellido_materno=?, apellido_casado=?, telefono=?, fecha_nacimiento=?, direccion_id=?, correo_electronico=? WHERE persona_id=?");
-            preesta.setInt(9, ob.persona_id);
-            preesta.setString(1, ob.nombre);
-            preesta.setString(2, ob.apellido_paterno);
-            preesta.setString(3, ob.apellido_materno);
-            preesta.setString(4, ob.apellido_casado);
-            preesta.setString(5, ob.telefono);
-            preesta.setString(6, ob.fecha_nacimiento);
-            preesta.setInt(7, ob.direccion_id);
-            preesta.setString(8, ob.correo_electronico);
+            preesta.setInt(9, ob.getPersona_id());
+            preesta.setString(1, ob.getNombre());
+            preesta.setString(2, ob.getApellido_paterno());
+            preesta.setString(3, ob.getApellido_materno());
+            preesta.setString(4, ob.getApellido_casado());
+            preesta.setString(5, ob.getTelefono());
+            preesta.setString(6, ob.getFecha_nacimiento());
+            preesta.setInt(7, ob.getDireccion_id());
+            preesta.setString(8, ob.getCorreo_electronico());
             preesta.executeUpdate();
             preesta.close();
         }catch (Exception ex){
@@ -167,14 +177,10 @@ public class PersonaDao {
             if (con != null) {
                 try {
                     con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
+                } catch (SQLException sqex) {}
             }
         }
-
         return ob;
     }
 
 }
-*/

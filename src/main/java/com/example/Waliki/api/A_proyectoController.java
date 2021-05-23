@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.SQLException;
 import java.util.List;
 
-@Controller
+@RestController
 public class A_proyectoController {
 
     @Autowired

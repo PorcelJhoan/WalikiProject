@@ -1,4 +1,4 @@
-package waliki.demo.dto;
+package com.example.Waliki.dto;
 
 public class Tipo_identificacion {
     private  Integer tipo_identificacion_id;

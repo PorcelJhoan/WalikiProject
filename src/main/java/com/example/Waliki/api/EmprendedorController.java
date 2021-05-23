@@ -1,14 +1,11 @@
-/*package com.example.Waliki.api;
-
+package com.example.Waliki.api;
 import com.example.Waliki.bl.GestionEmprendedorBl;
 import com.example.Waliki.dto.Emprendedor;
+import com.example.Waliki.dto.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,50 +15,69 @@ public class EmprendedorController {
     private GestionEmprendedorBl gestionEmprendedorBl;
 
     @GetMapping(path= "/Emprendedor")
-    public List<Emprendedor> SeleccionarTodasImagenes() throws SQLException {
-        return gestionEmprendedorBl.SeleccionarEmprendedores();
+    public ResponseDto SeleccionarTodasImagenes() throws SQLException {
+        return new ResponseDto(true,gestionEmprendedorBl.SeleccionarEmprendedores(),"");
     }
 
     @GetMapping(path= "/Emprendedor/{EmprendedorId}")
-    public Emprendedor SeleccionarImagen(@PathVariable Integer EmprendedorId) throws SQLException {
+    public ResponseDto SeleccionarImagen(@PathVariable Integer EmprendedorId) throws SQLException {
         Emprendedor imagen = gestionEmprendedorBl.SeleccionarEmprendedor(EmprendedorId);
-        if(imagen.emprendedor_id !=null){
-            return gestionEmprendedorBl.SeleccionarEmprendedor(EmprendedorId);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+        if(imagen==null){
+            return new ResponseDto(false,null,null);
         }
+        return new ResponseDto(true,imagen,"");
     }
 
     @PostMapping(path= "/Emprendedor")
-    public Emprendedor CrearEmprendedor(@RequestBody Emprendedor imagen) throws SQLException {
+    public ResponseDto CrearEmprendedor(@RequestBody Emprendedor imagen) throws SQLException {
         Emprendedor imagen2 = gestionEmprendedorBl.CrearEmprendedor(imagen);
-        if(imagen2.emprendedor_id !=null){
-            return gestionEmprendedorBl.CrearEmprendedor(imagen);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe Emprendedor con codigo");
+        if(imagen2.getContrato_id() ==null ){
+            return new ResponseDto(false,null,null);
         }
+        if(imagen2.getImagen_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        if(imagen2.getUsuario_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        if(imagen2.getTipo_emprendimiento_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        return  new ResponseDto(true,imagen2,"");
 
     }
 
     @DeleteMapping(path= "/Emprendedor/{EmprendedorId}")
-    public Emprendedor EliminarEmprendedor(@PathVariable Integer EmprendedorId) throws SQLException {
+    public ResponseDto EliminarEmprendedor(@PathVariable Integer EmprendedorId) throws SQLException {
         Emprendedor imagen = gestionEmprendedorBl.EliminarEmprendedor(EmprendedorId);
 
-        if(imagen.emprendedor_id !=null){
-            return gestionEmprendedorBl.EliminarEmprendedor(EmprendedorId);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+        if(imagen==null){
+            return new ResponseDto(false,null,null);
         }
+        return new ResponseDto(true,imagen,"");
 
 
 
     }
     @PutMapping(path= "/Emprendedor")
-    public Emprendedor ActualizarEmprendedor(@RequestBody Emprendedor ob) throws SQLException {
-        return gestionEmprendedorBl.ActualizarEmprendedor(ob);
+    public ResponseDto ActualizarEmprendedor(@RequestBody Emprendedor ob) throws SQLException {
+
+        Emprendedor imagen2 =gestionEmprendedorBl.ActualizarEmprendedor(ob);
+        if(imagen2.getContrato_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        if(imagen2.getImagen_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        if(imagen2.getUsuario_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        if(imagen2.getTipo_emprendimiento_id() ==null ){
+            return new ResponseDto(false,null,null);
+        }
+        return  new ResponseDto(true,imagen2,"");
     }
 
 
 
 }
-*/

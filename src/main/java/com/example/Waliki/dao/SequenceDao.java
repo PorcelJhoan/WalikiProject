@@ -1,17 +1,18 @@
 package com.example.Waliki.dao;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Locale;
 
 @Service
 public class SequenceDao {
+
+    /**
+     * Inicializamos sequenceDao para simular el "AUTO INCREMENT" de las llaves PRIMARIAS requeridas"
+     **/
 
     @Autowired
     public DataSource dataSource;
@@ -25,9 +26,7 @@ public class SequenceDao {
             Statement stat =con.createStatement();
             ResultSet res= stat.executeQuery("select nextval('"+nombreSecuencia+"')");
             if(res.next()){
-
                resultado=res.getInt(1);
-
             }
         }catch (Exception ex){
             ex.printStackTrace();
@@ -35,9 +34,7 @@ public class SequenceDao {
             if (con != null) {
                 try {
                     con.close();
-                } catch (SQLException sqex) {
-                    // No hacer nada intencionalemte;
-                }
+                } catch (SQLException sqex) { }
             }
         }
         return resultado;

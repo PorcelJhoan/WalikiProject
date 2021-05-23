@@ -1,13 +1,8 @@
-/*
 package com.example.Waliki.bl;
-
 import com.example.Waliki.dao.DireccionDao;
 import com.example.Waliki.dto.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-;
-
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,4 +31,3 @@ public class GestionDireccionBl {
         return direccionDao.ActualizarDireccion(ob);
     }
 }
-*/

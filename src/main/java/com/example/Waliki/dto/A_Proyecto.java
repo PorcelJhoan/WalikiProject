@@ -4,6 +4,15 @@ import javax.print.DocFlavor;
 
 public class A_Proyecto {
     private String nombre;
+    private String nombrep;
+    private String fecha_publicacion;
+    private String fecha_fin;
+    private Integer proyecto_id;
+    private String Descripcion;
+    private Double Monto_requerido;
+    private Double Monto_recaudado;
+    private Integer persona_id;
+    private String Estado;
 
     public String getNombrep() {
         return nombrep;
@@ -13,15 +22,6 @@ public class A_Proyecto {
         this.nombrep = nombrep;
     }
 
-    private String nombrep;
-    private String fecha_publicacion;
-    private String fecha_fin;
-    private Integer proyecto_id;
-    private String Descripcion;
-    private Double Monto_requerido;
-    private Double Monto_recaudado;
-    private Integer persona_id;
-
     public String getEstado() {
         return Estado;
     }
@@ -30,7 +30,6 @@ public class A_Proyecto {
         Estado = estado;
     }
 
-    private String Estado;
     public String getNombre() {
         return nombre;
     }

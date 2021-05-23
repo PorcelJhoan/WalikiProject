@@ -2,15 +2,6 @@ package com.example.Waliki.dto;
 
 public class A_Emprendedor {
 
-
-    public Integer getEmprendedor_id() {
-        return emprendedor_id;
-    }
-
-    public void setEmprendedor_id(Integer emprendedor_id) {
-        this.emprendedor_id = emprendedor_id;
-    }
-
     private Integer emprendedor_id;
     private String nombre;
     private String telefono;
@@ -21,6 +12,15 @@ public class A_Emprendedor {
     private Integer persona_id;
     private String numero_cuenta;
     private Integer numero_proyectos;
+    private Integer direccion_id;
+
+    public Integer getEmprendedor_id() {
+        return emprendedor_id;
+    }
+
+    public void setEmprendedor_id(Integer emprendedor_id) {
+        this.emprendedor_id = emprendedor_id;
+    }
 
     public Integer getDireccion_id() {
         return direccion_id;
@@ -30,7 +30,6 @@ public class A_Emprendedor {
         this.direccion_id = direccion_id;
     }
 
-    private Integer direccion_id;
 
     public Integer getPersona_id() {
         return persona_id;

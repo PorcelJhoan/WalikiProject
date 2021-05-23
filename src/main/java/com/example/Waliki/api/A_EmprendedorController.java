@@ -17,7 +17,7 @@ public class A_EmprendedorController {
 
     @Autowired
     GestionA_Emprendedor gestionA_emprendedor;
-
+/*
     @PostMapping ("/A_emprendedor")
     public String Home(Busqueda busqueda,Model model)throws SQLException {
         List<A_Emprendedor> Emprendedores=gestionA_emprendedor.SeleccionarEmprendedores(busqueda.getBusqueda());
@@ -51,13 +51,10 @@ public class A_EmprendedorController {
     @PostMapping("/A_Emprendedor")
     public String ActualizarEmprendedor(A_Emprendedor ob) throws SQLException {
         A_Emprendedor A= gestionA_emprendedor.ActualizarEmprendedor(ob);
-        System.out.println("-------------"+ob.getEmprendedor_id());
-        System.out.println("-------------"+ob.getPersona_id());
-        System.out.println("-------------"+ob.getDireccion_id());
+
         return "index";
     }
-
-
+*/
 
     /*-----------------------------------------------------------------------*/
     @PostMapping(path= "/emprendedor")
@@ -68,6 +65,10 @@ public class A_EmprendedorController {
     }
 
 
+    @GetMapping(path="/emprendedor")
+    public ResponseDto SeleccionarEmprendedores() throws SQLException{
+        return new ResponseDto (true,gestionA_emprendedor.SeleccionarEmprendedores()," EMPRENDEDORES, VISTA ADMINISTRADOR");
+    }
     @DeleteMapping(path= "/emprendedor/{usuarioId}")
     public ResponseDto EliminarUsuario(@PathVariable Integer usuarioId) throws SQLException {
         A_Emprendedor r = gestionA_emprendedor.EliminarEmprendedor(usuarioId);
@@ -78,7 +79,6 @@ public class A_EmprendedorController {
         }else{
             return new ResponseDto( false, null, "id inexistente");
         }
-
     }
     @PutMapping(path= "/emprendedor")
     public A_Emprendedor ActualizarUsuario(@RequestBody A_Emprendedor ob) throws SQLException {

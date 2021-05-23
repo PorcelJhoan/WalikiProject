@@ -1,4 +1,4 @@
-package waliki.demo.dto;
+package com.example.Waliki.dto;
 
 public class Imagen {
     private  Integer imagen_id;

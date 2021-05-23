@@ -1,14 +1,11 @@
-/*
 package com.example.Waliki.api;
-
 import com.example.Waliki.bl.GestionTipo_IdentificacionBl;
+import com.example.Waliki.dto.ResponseDto;
 import com.example.Waliki.dto.Tipo_identificacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -18,48 +15,45 @@ public class Tipo_identificacionController {
     private GestionTipo_IdentificacionBl gestionTipo_identificacionBl;
 
     @GetMapping(path= "/Tipo_identificacion")
-    public List<Tipo_identificacion> SeleccionarTodasImagenes() throws SQLException {
-        return gestionTipo_identificacionBl.SeleccionarTipoIdentificaciones();
+    public ResponseDto SeleccionarTiposIdentificacion() throws SQLException {
+        return new ResponseDto(true,gestionTipo_identificacionBl.SeleccionarTipoIdentificaciones(),"");
     }
 
     @GetMapping(path= "/Tipo_identificacion/{Tipo_identificacionId}")
-    public Tipo_identificacion SeleccionarImagen(@PathVariable Integer Tipo_identificacionId) throws SQLException {
+    public ResponseDto SeleccionarTipoIdentificacion(@PathVariable Integer Tipo_identificacionId) throws SQLException {
         Tipo_identificacion tipo_identificacion = gestionTipo_identificacionBl.SeleccionarTipoIdentificacion(Tipo_identificacionId);
-        if(tipo_identificacion.tipo_identificacion_id !=null){
-            return gestionTipo_identificacionBl.SeleccionarTipoIdentificacion(Tipo_identificacionId);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+        if(tipo_identificacion==null){
+            return new ResponseDto(false,null,"no existe identificacion con ese ID");
         }
+        return new ResponseDto(true,tipo_identificacion,null);
     }
 
     @PostMapping(path= "/Tipo_identificacion")
-    public Tipo_identificacion CrearImagen(@RequestBody Tipo_identificacion imagen) throws SQLException {
-        Tipo_identificacion imagen2 = gestionTipo_identificacionBl.CrearTipoIdentificacion(imagen);
-        if(imagen2.tipo_identificacion_id !=null){
-            return gestionTipo_identificacionBl.CrearTipoIdentificacion(imagen);
-        }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+    public ResponseDto CrearTipoIdentificacion(@RequestBody Tipo_identificacion i) throws SQLException {
+        Tipo_identificacion tipo_identificacion= gestionTipo_identificacionBl.CrearTipoIdentificacion(i);
+        if(tipo_identificacion.getTipo_identificacion() ==null || tipo_identificacion.getTipo_identificacion().trim().equals("")){
+            return new ResponseDto(false,null,"no existe identificacion con ese ID");
         }
-
+        return new ResponseDto(true,tipo_identificacion,null);
     }
 
     @DeleteMapping(path= "/Tipo_identificacion/{Tipo_identificacionId}")
-    public Tipo_identificacion EliminarImagen(@PathVariable Integer imagenId) throws SQLException {
-        Tipo_identificacion imagen = gestionTipo_identificacionBl.EliminarTipoIdentificacion(imagenId);
+    public ResponseDto EliminarImagen(@PathVariable Integer imagenId) throws SQLException {
+        Tipo_identificacion i = gestionTipo_identificacionBl.EliminarTipoIdentificacion(imagenId);
 
-        if(imagen.tipo_identificacion_id !=null){
-            return gestionTipo_identificacionBl.EliminarTipoIdentificacion(imagenId);
+        if(i==null){
+            return new ResponseDto(false,null,"no existe identificacion con ese ID");
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No existe la persona con codigo");
+            return new ResponseDto(true,i,null);
         }
-
-
-
     }
     @PutMapping(path= "/Tipo_identificacion")
-    public Tipo_identificacion ActualizarImagen(@RequestBody Tipo_identificacion ob) throws SQLException {
-        return gestionTipo_identificacionBl.ActualizarTipoIdentificacion(ob);
+    public ResponseDto ActualizarImagen(@RequestBody Tipo_identificacion ob) throws SQLException {
+        Tipo_identificacion tipo_identificacion = gestionTipo_identificacionBl.ActualizarTipoIdentificacion(ob);
+        if(tipo_identificacion.getTipo_identificacion() ==null || tipo_identificacion.getTipo_identificacion().trim().equals("")){
+            return new ResponseDto(false,null,"no existe identificacion con ese ID");
+        }
+        return new ResponseDto(true,tipo_identificacion,null);
     }
 
 }
-*/

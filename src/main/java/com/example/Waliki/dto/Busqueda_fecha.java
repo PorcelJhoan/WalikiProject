@@ -1,6 +1,9 @@
 package com.example.Waliki.dto;
 
 public class Busqueda_fecha {
+    private String fecha_inicio;
+    private String fecha_fin;
+
     public String getFecha_inicio() {
         return fecha_inicio;
     }
@@ -17,6 +20,5 @@ public class Busqueda_fecha {
         this.fecha_fin = fecha_fin;
     }
 
-    private String fecha_inicio;
-    private String fecha_fin;
+
 }

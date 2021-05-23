@@ -28,11 +28,8 @@ Accept:application/json
 ###
 
 
-
-
-
-
-
+GET http://localhost:8083/emprendedor
+###
 
 POST http://localhost:8083/emprendedor
 Content-Type: application/json

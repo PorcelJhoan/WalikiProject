@@ -1,4 +1,4 @@
-package waliki.demo.dto;
+package com.example.Waliki.dto;
 
 public class Usuario {
 
@@ -8,6 +8,7 @@ public class Usuario {
     private  String contrasena;
     private String fecha_registro;
     private  String codigo_verificacion;
+    private Integer persona_id;
 
     public Usuario() {
     }
@@ -68,6 +69,6 @@ public class Usuario {
         this.persona_id = persona_id;
     }
 
-    public Integer persona_id;
+
 
 }

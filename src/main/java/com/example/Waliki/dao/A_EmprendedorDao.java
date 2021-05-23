@@ -85,6 +85,34 @@ public class A_EmprendedorDao {
     }
 
 
+    public List<A_Emprendedor> SeleccionarEmprendedores() throws SQLException {
+        List<A_Emprendedor> array=new ArrayList<>();
+
+        try(Connection con=dataSource.getConnection();
+            PreparedStatement pre=con.prepareStatement("select (select count(*)from proyecto where emprendedor_id=e.emprendedor_id) , p.emprendedor_id,pe.persona_id, pe.nombre,ti.tipo_identificacion,pe.numero_identificacion,pe.telefono,pe.correo_electronico,di.ciudad, i.nombre,cu.numero_cuenta ,pe.persona_id,di.direccion_id from proyecto p JOIN emprendedor e on e.emprendedor_id=p.emprendedor_id JOIN usuario u on u.usuario_id=e.usuario_id JOIN persona pe on pe.persona_id= u.persona_id JOIN imagen i on i.imagen_id = e.imagen_id JOIN tipo_identificacion ti on ti.tipo_identificacion_id=pe.tipo_identificacion_id JOIN direccion di on di.direccion_id=pe.direccion_id JOIN cuenta cu on cu.emprendedor_id=e.emprendedor_id ");){
+            A_Emprendedor ob = new A_Emprendedor();
+            ResultSet res= pre.executeQuery();
+            while(res.next()){
+                ob.setNumero_proyectos(res.getInt("count"));
+                ob.setEmprendedor_id(res.getInt("emprendedor_id"));
+                ob.setNombre(res.getString("nombre"));
+                ob.setTipo_identificacion(res.getString("tipo_identificacion"));
+                ob.setNumero_identificacion(res.getString("numero_identificacion"));
+                ob.setTelefono(res.getString("telefono"));
+                ob.setCorreo(res.getString("correo_electronico"));
+                ob.setCiudad(res.getString("ciudad"));
+                ob.setNumero_cuenta(res.getString("numero_cuenta"));
+                ob.setPersona_id(res.getInt("persona_id"));
+                ob.setDireccion_id(res.getInt("direccion_id"));
+                array.add(ob);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+        return array;
+    }
+
     public A_Emprendedor EliminarEmprendedor(Integer EmprendedorId) throws SQLException {
 
         A_Emprendedor ob=new A_Emprendedor();

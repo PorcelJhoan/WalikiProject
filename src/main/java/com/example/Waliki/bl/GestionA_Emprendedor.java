@@ -21,6 +21,10 @@ public class GestionA_Emprendedor {
         return a_emprendedorDao.SeleccionarEmprendedor(a,b,c);
     }
 
+    public List<A_Emprendedor> SeleccionarEmprendedores() throws SQLException {
+        return a_emprendedorDao.SeleccionarEmprendedores();
+    }
+
     public A_Emprendedor EliminarEmprendedor(Integer usuarioId) throws SQLException {
 
         return a_emprendedorDao.EliminarEmprendedor(usuarioId);

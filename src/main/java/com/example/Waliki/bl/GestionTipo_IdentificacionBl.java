@@ -1,13 +1,8 @@
-/*
 package com.example.Waliki.bl;
-
 import com.example.Waliki.dao.Tipo_identificacionDao;
 import com.example.Waliki.dto.Tipo_identificacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,4 +33,3 @@ public class GestionTipo_IdentificacionBl {
     }
 
 }
-*/

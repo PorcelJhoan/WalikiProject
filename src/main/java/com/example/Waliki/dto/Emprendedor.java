@@ -1,4 +1,4 @@
-package waliki.demo.dto;
+package com.example.Waliki.dto;
 
 public class Emprendedor {
     private Integer emprendedor_id;

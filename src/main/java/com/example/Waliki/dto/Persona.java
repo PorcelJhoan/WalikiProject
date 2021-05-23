@@ -1,4 +1,4 @@
-package waliki.demo.dto;
+package com.example.Waliki.dto;
 
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +15,8 @@ public class Persona {
     private String telefono;
     private String correo_electronico;
     private String numero_identificacion;
+    private String fecha_nacimiento;
+
 
     public Integer getPersona_id() {
         return persona_id;
@@ -104,7 +106,7 @@ public class Persona {
         this.fecha_nacimiento = fecha_nacimiento;
     }
 
-    private String fecha_nacimiento;
+
 
 
 }
