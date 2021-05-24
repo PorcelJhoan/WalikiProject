@@ -1,13 +1,8 @@
 package com.example.Waliki.dao;
-
-
-
-
 import com.example.Waliki.dto.A_Proyecto;
 import com.example.Waliki.dto.Busqueda_fecha;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
