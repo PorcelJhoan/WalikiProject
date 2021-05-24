@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>WALIKI</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+
+</head>
+<body>
+
+
+<div id="app">
+    hola
+
+
+            <ul v-for="usu in usuario">
+                <li v-for="u in usu">{{u}}</li>
+            </ul>
+
+
+
+</div>
+
+<script>
+    const apiURL = "http://localhost:8083/usuario";
+    new Vue({
+       el: '#app',
+        data(){
+           return{
+               usuario:[]
+           }
+        },
+        created(){
+          fetch(apiURL)
+            .then(response=>{
+                return response.json();
+            })
+            .then(usuario=>{
+                this.usuario = usuario;
+            })
+        }
+    });
+</script>
+
+
+
+</body>
+</html>

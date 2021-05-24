@@ -1,8 +1,8 @@
-GET http://localhost:8082/Emprendedor/2
+GET http://localhost:8083/Emprendedor/114
 ###
 GET http://localhost:8083/Emprendedor
 ###
-POST http://localhost:8082/Emprendedor
+POST http://localhost:8083/Emprendedor
 Content-Type:application/json
 Accept:application/json
 
@@ -20,32 +20,11 @@ Content-Type:application/json
 Accept:application/json
 
 {
-  "imagen_id":1,
+  "emprendedor_id": 114,
+  "imagen_id":2,
   "tipo_emprendimiento_id":1,
   "contrato_id":1,
   "usuario_id": 11
 }
 ###
 
-
-GET http://localhost:8083/emprendedor
-###
-
-POST http://localhost:8083/emprendedor
-Content-Type: application/json
-Accept:application/json
-
-{
-  "busqueda":"robe"
-}
-###
-
-POST http://localhost:8083/proyecto
-Content-Type: application/json
-Accept:application/json
-
-{
-  "fecha_inicio":"2021/10/10",
-  "fecha_fin":"2022/11/21"
-}
-###

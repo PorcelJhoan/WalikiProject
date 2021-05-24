@@ -1,0 +1,32 @@
+
+GET http://localhost:8083/emprendedor
+###
+
+POST http://localhost:8083/emprendedor
+Content-Type: application/json
+Accept:application/json
+
+{
+  "busqueda":"robe"
+}
+###
+
+GET http://localhost:8083/A_Emprendedor/93/20/6
+###
+
+
+PUT http://localhost:8083/A_Emprendedor
+Content-Type: application/json
+Accept:application/json
+
+{
+  "persona_id":18,
+  "nombre": "nombre prueba",
+  "telefono": "+519 512315457",
+  "correo": "nombre@gmail.com",
+  "emprendedor_id": 71,
+  "numero_identificacion": "451502215",
+  "numero_cuenta":"1451515",
+  "direccion_id": 111,
+  "ciudad": "La Paz"
+}

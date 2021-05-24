@@ -1,35 +1,34 @@
-GET http://localhost:8083/emprendedores/Il
+
+GET http://localhost:8083/direccion/111
 ###
-GET http://localhost:8082/direccion
+
+GET http://localhost:8083/direccion
 ###
-POST http://localhost:8082/direccion
+POST http://localhost:8083/direccion
 Content-Type:application/json
 Accept:application/json
 
 {
-  "zona":"Perez ",
-  "calle": "calle 28",
-  "Longitud":17.15151,
-  "Latitud":28.15512,
-  "numero": "1233-F"
+  "zona":"Perez ddd ",
+  "calle": "calle 282",
+  "numero": "1233-FF",
+  "longitud": 11511,
+  "latitud": 55222
 
 }
 ###
-DELETE http://localhost:8082/direccion/44
+DELETE http://localhost:8083/direccion/44
 ###
-PUT http://localhost:8082/direccion
+PUT http://localhost:8083/direccion
 Content-Type:application/json
 Accept:application/json
 
 {
-  "id_persona":4,
-  "nombre": "Rolando",
-  "apellido_paterno":"Peres",
-  "apellido_materno":"Florez",
-  "apellido_casado":"",
-  "telefono":"73225878",
-  "fecha_nacimiento":1,
-  "id_direccion":1,
-  "correo_electronico":"Rolandoo@gmail.com"
+  "direccion_id": 111,
+  "zona":"Perez ",
+  "calle": "calle 28",
+  "longitud": 1715151,
+  "latitud": 2815512,
+  "numero": "1233-F"
 }
 ###

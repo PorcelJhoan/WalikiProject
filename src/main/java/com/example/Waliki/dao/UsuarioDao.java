@@ -147,12 +147,12 @@ public class UsuarioDao {
             con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
-            preesta = con.prepareStatement("UPDATE usuario SET tipo_usuario_id=?,usuario=?,contrasena=?,fecha_registro=?,codigo_verificacion=?,persona_id=? WHERE usuario_id=?");
+            preesta = con.prepareStatement("UPDATE usuario SET tipo_usuario_id=?,usuario=?,contrasena=?,fecha_registro=TO_DATE(?,'YYYYMMDD'),codigo_verificacion=?,persona_id=? WHERE usuario_id=?");
             preesta.setInt(7, ob.getUsuario_id());
             preesta.setInt(1, ob.getTipo_usuario_id());
             preesta.setString(2, ob.getUsuario());
             preesta.setString(3, ob.getContrasena());
-            preesta.setString(1, ob.getFecha_registro());
+            preesta.setString(4, ob.getFecha_registro());
             preesta.setString(5, ob.getCodigo_verificacion());
             preesta.setInt(6, ob.getPersona_id());
             preesta.executeUpdate();

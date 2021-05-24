@@ -1,0 +1,41 @@
+GET http://localhost:8083/persona/114
+###
+GET http://localhost:8083/persona
+###
+POST http://localhost:8083/persona
+Content-Type:application/json
+Accept:application/json
+
+{
+  "direccion_id": 2,
+  "tipo_identificacion_id": 2,
+  "nombre": "Rafael ",
+  "apellido_paterno":"Nadalllllllll" ,
+  "apellido_materno":"Rodriguez",
+  "apellido_casado": "Perez",
+  "telefono":"+519 5151216511",
+  "correo_electronico": "Rafael@gmail.com",
+  "numero_identificacion":"45412121",
+  "fecha_nacimiento": "2006-09-28"
+}
+###
+DELETE http://localhost:8083/persona/1
+###
+PUT http://localhost:8083/persona
+Content-Type:application/json
+Accept:application/json
+
+{
+  "persona_id": 92,
+  "direccion_id": 2,
+  "tipo_identificacion_id": 2,
+  "nombre": "Rafael ",
+  "apellido_paterno":"Nadal" ,
+  "apellido_materno":"Rodriguez",
+  "apellido_casado": "Perez",
+  "telefono":"+519 5151216511",
+  "correo_electronico": "Rafael@gmail.org",
+  "numero_identificacion":"45412121"
+
+}
+###

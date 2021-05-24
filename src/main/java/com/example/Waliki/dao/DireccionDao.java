@@ -36,7 +36,7 @@ public class DireccionDao {
         try{
             con=dataSource.getConnection();
             PreparedStatement preesta;
-            preesta = con.prepareStatement("INSERT INTO direccion(direccion_id,zona,calle,Longitud,Latitud,numero)" + " VALUES (?,?,?,?,?,?)");
+            preesta = con.prepareStatement("INSERT INTO direccion(direccion_id,zona,calle,Longitud,Latitud,numero) VALUES (?,?,?,?,?,?)");
             preesta.setInt(1, ob.getDireccion_id());
             preesta.setString(2, ob.getZona());
             preesta.setString(3, ob.getCalle());

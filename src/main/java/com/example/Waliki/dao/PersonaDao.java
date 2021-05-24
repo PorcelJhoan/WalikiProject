@@ -49,7 +49,6 @@ public class PersonaDao {
             preesta.setInt(10, ob.getTipo_identificacion_id());
             preesta.setString(11, ob.getNumero_identificacion());
             preesta.executeUpdate();
-            preesta.close();
         }catch (Exception ex){
             ex.printStackTrace();
         }finally {
@@ -73,17 +72,20 @@ public class PersonaDao {
         try{
             con=dataSource.getConnection();
             Statement stat =con.createStatement();
-            ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico,tipo_identificacion_id,numero_identificacion from persona ");
+            ResultSet res= stat.executeQuery("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico ,tipo_identificacion_id ,numero_identificacion , direccion_id from persona ");
             while(res.next()){
                 Persona ob=new Persona();
                 ob.setPersona_id(res.getInt("persona_id"));
                 ob.setNombre(res.getString("nombre"));
+                ob.setFecha_nacimiento(res.getString("fecha_nacimiento"));
+                ob.setTipo_identificacion_id(res.getInt("tipo_identificacion_id"));
                 ob.setApellido_paterno(res.getString("apellido_paterno"));
                 ob.setApellido_materno(res.getString("apellido_materno"));
                 ob.setApellido_casado(res.getString("apellido_casado"));
+                ob.setDireccion_id(res.getInt("direccion_id"));
                 ob.setTelefono(res.getString("telefono"));
-                ob.setFecha_nacimiento(res.getString("fecha_nacimiento"));
                 ob.setCorreo_electronico(res.getString("correo_electronico"));
+                ob.setNumero_identificacion(res.getString("numero_identificacion"));
                 array.add(ob);
             }
         }catch (Exception ex){
@@ -108,17 +110,22 @@ public class PersonaDao {
 
         Persona ob=new Persona();
         try(Connection  con=dataSource.getConnection();
-            PreparedStatement pre=con.prepareStatement("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico from persona WHERE persona_id=?");)
+            PreparedStatement pre=con.prepareStatement("select persona_id, nombre, apellido_paterno, apellido_materno, apellido_casado, telefono, fecha_nacimiento, direccion_id, correo_electronico ,tipo_identificacion_id ,numero_identificacion , direccion_id from persona WHERE persona_id=?");)
         {
             pre.setInt(1, PersonId);
             ResultSet res=pre.executeQuery();
             if(res.next()){
                 ob.setPersona_id(res.getInt("persona_id"));
                 ob.setNombre(res.getString("nombre"));
+                ob.setFecha_nacimiento(res.getString("fecha_nacimiento"));
+                ob.setTipo_identificacion_id(res.getInt("tipo_identificacion_id"));
                 ob.setApellido_paterno(res.getString("apellido_paterno"));
                 ob.setApellido_materno(res.getString("apellido_materno"));
+                ob.setApellido_casado(res.getString("apellido_casado"));
+                ob.setDireccion_id(res.getInt("direccion_id"));
                 ob.setTelefono(res.getString("telefono"));
                 ob.setCorreo_electronico(res.getString("correo_electronico"));
+                ob.setNumero_identificacion(res.getString("numero_identificacion"));
             }else{
                 ob=null;
             }
@@ -159,16 +166,15 @@ public class PersonaDao {
             con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
-            preesta = con.prepareStatement("UPDATE persona SET nombre =?, apellido_paterno=?, apellido_materno=?, apellido_casado=?, telefono=?, fecha_nacimiento=?, direccion_id=?, correo_electronico=? WHERE persona_id=?");
-            preesta.setInt(9, ob.getPersona_id());
+            preesta = con.prepareStatement("UPDATE persona SET nombre =?, apellido_paterno=?, apellido_materno=?, apellido_casado=?, telefono=?, direccion_id=?, correo_electronico=? WHERE persona_id=?");
+            preesta.setInt(8, ob.getPersona_id());
             preesta.setString(1, ob.getNombre());
             preesta.setString(2, ob.getApellido_paterno());
             preesta.setString(3, ob.getApellido_materno());
             preesta.setString(4, ob.getApellido_casado());
             preesta.setString(5, ob.getTelefono());
-            preesta.setString(6, ob.getFecha_nacimiento());
-            preesta.setInt(7, ob.getDireccion_id());
-            preesta.setString(8, ob.getCorreo_electronico());
+            preesta.setInt(6, ob.getDireccion_id());
+            preesta.setString(7, ob.getCorreo_electronico());
             preesta.executeUpdate();
             preesta.close();
         }catch (Exception ex){

@@ -151,7 +151,7 @@ public class EmprendedorDao {
             con=dataSource.getConnection();
             Statement stat =con.createStatement();
             PreparedStatement preesta;
-            preesta = con.prepareStatement("UPDATE emprendedor SET emprendedor_id=?,imagen_id=?,tipo_emprendimiento_id=?,contrato_id=?,usuario_id=? WHERE usuario_id=?");
+            preesta = con.prepareStatement("UPDATE emprendedor SET imagen_id=?,tipo_emprendimiento_id=?,contrato_id=?,usuario_id=? WHERE emprendedor_id=?");
             preesta.setInt(5, ob.getEmprendedor_id());
             preesta.setInt(1, ob.getImagen_id());
             preesta.setInt(2, ob.getTipo_emprendimiento_id());

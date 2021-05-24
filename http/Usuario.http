@@ -1,4 +1,4 @@
-GET http://localhost:8083/usuario/1
+GET http://localhost:8083/usuario/101
 ###
 GET http://localhost:8083/usuario
 ###
@@ -8,25 +8,26 @@ Accept:application/json
 
 {
   "tipo_usuario_id":2,
-  "usuario": "usuario 6",
+  "usuario": "usuario 111",
   "contrasena":"contrasena 6",
   "fecha_registro":"1988-09-28",
-  "codigo_verificacion":"",
+  "codigo_verificacion":"21215",
   "persona_id": 4
 }
 ###
 DELETE http://localhost:8083/usuario/
 ###
-PUT http://localhost:8082/usuario
+PUT http://localhost:8083/usuario
 Content-Type:application/json
 Accept:application/json
 
 {
+  "usuario_id": 2,
   "tipo_usuario_id":2,
-  "usuario": "usuario 6",
-  "contrasena":"contrasena 6",
-  "fecha_registro":"1988-09-28",
-  "codigo_verificacion":"",
-  "persona_id": 4
+  "usuario": "usuario hickman",
+  "contrasena":"contrasena",
+  "fecha_registro":"2006-09-28",
+  "codigo_verificacion":"1234",
+  "persona_id": 89
 }
 ###

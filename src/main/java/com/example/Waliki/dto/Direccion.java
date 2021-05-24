@@ -4,8 +4,8 @@ public class Direccion {
     private Integer direccion_id;
     private String zona;
     private String calle;
-    private Double Longitud;
-    private Double Latitud;
+    private Double longitud;
+    private Double latitud;
     private String numero;
 
     public Integer getDireccion_id() {
@@ -33,19 +33,19 @@ public class Direccion {
     }
 
     public Double getLongitud() {
-        return Longitud;
+        return longitud;
     }
 
     public void setLongitud(Double longitud) {
-        Longitud = longitud;
+        longitud = longitud;
     }
 
     public Double getLatitud() {
-        return Latitud;
+        return latitud;
     }
 
     public void setLatitud(Double latitud) {
-        Latitud = latitud;
+        latitud = latitud;
     }
 
     public String getNumero() {

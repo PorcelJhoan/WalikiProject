@@ -59,30 +59,25 @@ public class A_EmprendedorController {
     /*-----------------------------------------------------------------------*/
     @PostMapping(path= "/emprendedor")
     public ResponseDto SeleccionarTodosEmprendedores(@RequestBody Busqueda busqueda) throws SQLException {
-        System.out.println("---------"+busqueda.getBusqueda());
         return new ResponseDto( true,gestionA_emprendedor.SeleccionarEmprendedores(busqueda.getBusqueda()), null);
 
     }
-
 
     @GetMapping(path="/emprendedor")
     public ResponseDto SeleccionarEmprendedores() throws SQLException{
         return new ResponseDto (true,gestionA_emprendedor.SeleccionarEmprendedores()," EMPRENDEDORES, VISTA ADMINISTRADOR");
     }
-    @DeleteMapping(path= "/emprendedor/{usuarioId}")
-    public ResponseDto EliminarUsuario(@PathVariable Integer usuarioId) throws SQLException {
-        A_Emprendedor r = gestionA_emprendedor.EliminarEmprendedor(usuarioId);
 
-        if(r.getEmprendedor_id() !=null){
-            return new ResponseDto(false, gestionA_emprendedor.EliminarEmprendedor(usuarioId), "");
+    @GetMapping(path="/A_Emprendedor/{personaId}/{direccionId}/{cuentaId}")
+    public ResponseDto EditarEmprendedores(@PathVariable Integer personaId,@PathVariable Integer direccionId,@PathVariable Integer cuentaId,Model model) throws SQLException {
+        List<A_Emprendedor> Emprendedores=gestionA_emprendedor.SeleccionarEmprendedor(personaId,cuentaId,direccionId);
 
-        }else{
-            return new ResponseDto( false, null, "id inexistente");
-        }
+        return new ResponseDto(true,Emprendedores,"");
     }
-    @PutMapping(path= "/emprendedor")
-    public A_Emprendedor ActualizarUsuario(@RequestBody A_Emprendedor ob) throws SQLException {
-        return gestionA_emprendedor.ActualizarEmprendedor(ob);
+    @PutMapping(path="/A_Emprendedor")
+    public ResponseDto ActualizarEmprendedor(@RequestBody A_Emprendedor ob) throws SQLException {
+        A_Emprendedor A= gestionA_emprendedor.ActualizarEmprendedor(ob);
+        return new ResponseDto(true,A,"");
     }
 
 }

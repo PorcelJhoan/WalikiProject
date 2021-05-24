@@ -1,0 +1,9 @@
+POST http://localhost:8083/proyecto
+Content-Type: application/json
+Accept:application/json
+
+{
+  "fecha_inicio":"2021/10/10",
+  "fecha_fin":"2022/11/21"
+}
+###

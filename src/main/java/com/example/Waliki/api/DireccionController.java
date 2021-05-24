@@ -15,12 +15,12 @@ public class DireccionController {
     private GestionDireccionBl gestionDireccionBl;
 
     @GetMapping(path= "/direccion")
-    public ResponseDto SeleccionarTodasImagenes() throws SQLException {
+    public ResponseDto SeleccionarDirecciones() throws SQLException {
         return new ResponseDto(true,gestionDireccionBl.SeleccionarTodasDirecciones(),"");
     }
 
     @GetMapping(path= "/direccion/{direccionId}")
-    public ResponseDto SeleccionarImagen(@PathVariable Integer direccionId) throws SQLException {
+    public ResponseDto SeleccionarDireccion(@PathVariable Integer direccionId) throws SQLException {
         Direccion direccion= gestionDireccionBl.SeleccionarDireccion(direccionId);
         if(direccion==null){
             return new ResponseDto(false,null,null);
@@ -28,8 +28,9 @@ public class DireccionController {
             return new ResponseDto(true,direccion,"");
     }
     @PostMapping(path= "/direccion")
-    public ResponseDto CrearImagen(@RequestBody Direccion direccion) throws SQLException {
+    public ResponseDto CrearDireccion(@RequestBody Direccion direccion) throws SQLException {
         Direccion imagen2 = gestionDireccionBl.CrearDireccion(direccion);
+        System.out.println(imagen2.getLongitud()+"----------"+imagen2.getLatitud()+"----"+imagen2.getZona());
         if(imagen2.getZona() ==null || imagen2.getZona().trim().equals("")){
             return new ResponseDto(false,null,null);
         }

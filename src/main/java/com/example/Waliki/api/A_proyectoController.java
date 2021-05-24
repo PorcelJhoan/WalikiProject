@@ -21,7 +21,7 @@ public class A_proyectoController {
     @Autowired
     GestionA_Proyecto gestionA_proyecto;
 
-
+/*
     @PostMapping ("/A_proyecto")
     public String Home(Busqueda_fecha fecha, Model model)throws SQLException {
         List<A_Proyecto> proyecto=gestionA_proyecto.SeleccionarProyectos(fecha);
@@ -36,7 +36,7 @@ public class A_proyectoController {
         return "A_proyecto";
     }
 
-
+*/
     @PostMapping(path= "/proyecto")
     public ResponseDto SeleccionarProyecto(@RequestBody Busqueda_fecha fecha) throws SQLException {
 

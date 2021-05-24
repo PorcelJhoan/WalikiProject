@@ -18,8 +18,20 @@ import java.util.List;
 @Service
 public class A_ProyectoDao {
     String fecha_actual="";
+
+    /**
+     * Inicializamos datasource para la conexión a la base de datos
+     **/
+
     @Autowired
     private DataSource dataSource;
+
+    /**
+     * La siguiente función se encargará  de seleccionar todos los proyectos de la tabla "proyecto",
+     * el cual tiene como parametros un intervalo de fechas y una vez realizada la busqueda, retornará un array de objetos "Emprendedor".
+     **/
+
+
     public List<A_Proyecto> SeleccionarProyectos(Busqueda_fecha busqueda) throws SQLException {
         List<A_Proyecto> array=new ArrayList<>();
 

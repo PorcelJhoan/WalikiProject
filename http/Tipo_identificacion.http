@@ -1,8 +1,8 @@
-GET http://localhost:8082/Tipo_identificacion/1
+GET http://localhost:8083/Tipo_identificacion/1
 ###
 GET http://localhost:8083/Tipo_identificacion
 ###
-POST http://localhost:8082/Tipo_identificacion
+POST http://localhost:8083/Tipo_identificacion
 Content-Type:application/json
 Accept:application/json
 
@@ -11,9 +11,9 @@ Accept:application/json
 
 }
 ###
-DELETE http://localhost:8082/Tipo_identificacion/1
+DELETE http://localhost:8083/Tipo_identificacion/1
 ###
-PUT http://localhost:8082/Tipo_identificacion
+PUT http://localhost:8083/Tipo_identificacion
 Content-Type:application/json
 Accept:application/json
 

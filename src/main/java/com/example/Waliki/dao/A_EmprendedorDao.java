@@ -12,10 +12,17 @@ import java.util.List;
 @Service
 public class A_EmprendedorDao {
 
-
+    /**
+     * Inicializamos datasource para la conexión a la base de datos
+     **/
 
     @Autowired
     public DataSource dataSource;
+
+    /**
+     * La siguiente función se encargará  de seleccionar todos los emprendedores de la tabla "emprendedor",
+     * el cual tiene como parametro buscar  y una vez realizada la busqueda, retornará un array de objetos "Emprendedor".
+     **/
 
     public List<A_Emprendedor> SeleccionarEmprendedores(String busqueda) throws SQLException {
         List<A_Emprendedor> array=new ArrayList<>();
@@ -52,6 +59,11 @@ public class A_EmprendedorDao {
         return array;
     }
 
+    /**
+     * La siguiente función se encargará  seleccionar un emprendedor de la tabla "emprendedor",
+     * el cual tiene como parámetro un entero simulando ser el id del emprendedor, y una vez realizado la busqueda,
+     * retornará un objeto Emprendedor.
+     **/
 
     public List<A_Emprendedor> SeleccionarEmprendedor(int persona_id,int cuenta_id, int direccion_id ) throws SQLException {
         List<A_Emprendedor> array=new ArrayList<>();
@@ -84,6 +96,10 @@ public class A_EmprendedorDao {
         return array;
     }
 
+    /**
+     * La siguiente función se encargará  de seleccionar todos los emprendedores de la tabla "emprendedor",
+     * el cual no tiene parámetros  y una vez realizada la busqueda, retornará un array de objetos "Emprendedor".
+     **/
 
     public List<A_Emprendedor> SeleccionarEmprendedores() throws SQLException {
         List<A_Emprendedor> array=new ArrayList<>();
@@ -113,22 +129,12 @@ public class A_EmprendedorDao {
         return array;
     }
 
-    public A_Emprendedor EliminarEmprendedor(Integer EmprendedorId) throws SQLException {
+    /**
+     * La siguiente función se encargará  actualizar un emprendedor de la tabla "emprendedor",
+     * el cual tiene como parámetro un objeto "Emprendedor", y una vez realizado la actualizacion,
+     * retornará un objeto Emprendedor.
+     **/
 
-        A_Emprendedor ob=new A_Emprendedor();
-
-        try(
-            Connection con=dataSource.getConnection();
-            Statement stat =con.createStatement();
-            PreparedStatement pre =con.prepareStatement("delete from proyecto WHERE proyecto_id=?");){
-            pre.setInt(1, EmprendedorId);
-            ResultSet res = pre.executeQuery();
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-        return ob;
-    }
 
     public A_Emprendedor ActualizarEmprendedor(A_Emprendedor ob) throws SQLException {
         Connection con=null;
