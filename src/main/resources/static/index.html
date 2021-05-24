@@ -5,21 +5,83 @@
     <title>WALIKI</title>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
 
+        body {
+            margin: 0;
+            background: linear-gradient(45deg, #49a09d, #5f2c82);
+            font-family: sans-serif;
+            font-weight: 100;
+        }
+
+        .container {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        th,
+        td {
+            padding: 15px;
+            background-color: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
+        th {
+            text-align: left;
+        }
+        td:hover{
+            background-color: rgba(222,30,100,0.1);
+        }
+        h1{
+            color:white;
+        }
+    </style>
 
 </head>
 <body>
 
 
 <div id="app">
-    <a href="templates/EditarEmprendedor.html">hola</a>
+    <center> <h1 >USUARIOS</h1></center>
 
+    <div class="container">
+        <table>
+            <thead>
+            <tr>
+                <th>ID Usuario </th>
+                <th>Usuario</th>
+                <th>Contraseña</th>
+                <th>Fecha Registro</th>
+                <th>Codigo Verificacion</th>
+                <th>ID Persona </th>
+            </tr>
+            </thead>
+            <tbody v-for="usu in usuario">
+            <tr v-for="u in usu">
+                <td>{{u.usuario_id}}</td>
+                <td>{{u.usuario}}</td>
+                <td>{{u.contrasena}}</td>
+                <td>{{u.fecha_registro}}</td>
+                <td>{{u.codigo_verificacion}}</td>
+                <td>{{u.persona_id}}</td>
+            </tr>
 
-            <ul v-for="usu in usuario">
-                <li v-for="u in usu">{{u}}</li>
-            </ul>
-
-
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
