@@ -7,10 +7,7 @@ import com.example.Waliki.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -37,9 +34,8 @@ public class A_proyectoController {
     }
 
 */
-    @PostMapping(path= "/proyecto")
-    public ResponseDto SeleccionarProyecto(@RequestBody Busqueda_fecha fecha) throws SQLException {
-
-        return new ResponseDto( true,gestionA_proyecto.SeleccionarProyectos(fecha), null);
+    @GetMapping(path= "/proyecto/{fecha}/{fechaf}")
+    public ResponseDto SeleccionarProyecto(@PathVariable String fecha,@PathVariable String fechaf) throws SQLException {
+        return new ResponseDto( true,gestionA_proyecto.SeleccionarProyectos(fecha,fechaf), null);
     }
 }

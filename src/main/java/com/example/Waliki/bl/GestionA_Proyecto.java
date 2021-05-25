@@ -15,8 +15,8 @@ public class GestionA_Proyecto {
     @Autowired
     A_ProyectoDao a_emprendedorDao;
 
-    public List<A_Proyecto> SeleccionarProyectos(Busqueda_fecha fecha) throws SQLException {
-        return a_emprendedorDao.SeleccionarProyectos(fecha);
+    public List<A_Proyecto> SeleccionarProyectos(String fecha,String fechaf) throws SQLException {
+        return a_emprendedorDao.SeleccionarProyectos(fecha,fechaf);
     }
 /*
     public List<A_Proyecto> SeleccionarEmprendedor(int a, int b, int c) throws SQLException {

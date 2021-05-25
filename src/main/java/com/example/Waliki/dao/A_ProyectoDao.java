@@ -27,7 +27,7 @@ public class A_ProyectoDao {
      **/
 
 
-    public List<A_Proyecto> SeleccionarProyectos(Busqueda_fecha busqueda) throws SQLException {
+    public List<A_Proyecto> SeleccionarProyectos(String fechai,String fechaf) throws SQLException {
         List<A_Proyecto> array=new ArrayList<>();
 
         Calendar fecha = new GregorianCalendar();
@@ -40,10 +40,10 @@ public class A_ProyectoDao {
         try(Connection con=dataSource.getConnection();
             PreparedStatement pre=con.prepareStatement("select p.proyecto_id,p.nombre,p2.nombre as nombrep,p.fecha_inicio,p.fecha_fin,p.descripcion,p.monto_recaudar,(select sum(d.monto) from donacion d where d.proyecto_id = p.proyecto_id group by d.donacion_id),p2.persona_id from proyecto p JOIN donacion d on p.proyecto_id=d.proyecto_id JOIN donador d2 on d.donador_id = d2.donador_id JOIN emprendedor e on p.emprendedor_id = e.emprendedor_id JOIN usuario u on e.usuario_id = u.usuario_id JOIN persona p2 on u.persona_id = p2.persona_id where p.fecha_inicio between date(?) and date(?) OR p.fecha_fin between date(?) and date(?)")){
 
-            pre.setString(1, busqueda.getFecha_inicio());
-            pre.setString(2, busqueda.getFecha_fin());
-            pre.setString(3, busqueda.getFecha_inicio());
-            pre.setString(4, busqueda.getFecha_fin());
+            pre.setString(1,fechai);
+            pre.setString(2, fechaf);
+            pre.setString(3, fechai);
+            pre.setString(4, fechaf);
             ResultSet res= pre.executeQuery();
             while(res.next()){
                 A_Proyecto ob = new A_Proyecto();

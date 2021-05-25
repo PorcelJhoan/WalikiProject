@@ -57,9 +57,9 @@ public class A_EmprendedorController {
 */
 
     /*-----------------------------------------------------------------------*/
-    @PostMapping(path= "/emprendedor")
-    public ResponseDto SeleccionarTodosEmprendedores(@RequestBody Busqueda busqueda) throws SQLException {
-        return new ResponseDto( true,gestionA_emprendedor.SeleccionarEmprendedores(busqueda.getBusqueda()), null);
+    @GetMapping(path= "/emprendedor/{busqueda}")
+    public ResponseDto SeleccionarTodosEmprendedores(@PathVariable String busqueda) throws SQLException {
+        return new ResponseDto( true,gestionA_emprendedor.SeleccionarEmprendedores(busqueda), null);
 
     }
 

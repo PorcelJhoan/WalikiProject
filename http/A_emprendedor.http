@@ -2,13 +2,8 @@
 GET http://localhost:8083/emprendedor
 ###
 
-POST http://localhost:8083/emprendedor
-Content-Type: application/json
-Accept:application/json
+GET http://localhost:8083/emprendedor/robe
 
-{
-  "busqueda":"robe"
-}
 ###
 
 GET http://localhost:8083/A_Emprendedor/93/20/6
