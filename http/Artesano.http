@@ -1,0 +1,23 @@
+POST http://localhost:8083/artesano
+Content-Type:application/json
+Accept:application/json
+
+{
+  "nombre": "Rafael ",
+  "apellido_paterno":"LOPEZ LOPEZ" ,
+  "apellido_materno":"Rodriguez",
+  "apellido_casado": "Perez",
+  "telefono":"+519 5151216511",
+  "correo_electronico": "Rafael@gmail.com",
+  "fecha_nacimiento": "2006-09-28",
+  "tipo_artesania":1,
+  "tipo_emprendimiento_id": 2,
+  "usuario": "usuario 111",
+  "contrasena":"contrasena 6",
+  "identificacion": "151518951",
+  "tipo_identificacion_id":1
+}
+###
+GET http://localhost:8083/TipoArtesania
+###
+GET http://localhost:8083/Tipo_identificacion

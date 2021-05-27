@@ -35,7 +35,11 @@ public class A_ProyectoDao {
         int año = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH)+1;
         int dia = fecha.get(Calendar.DAY_OF_MONTH);
-        fecha_actual=año+"-"+mes+"-"+dia;
+        if(mes<10){
+            fecha_actual=año+"-0"+mes+"-"+dia;
+        }
+
+
 
         try(Connection con=dataSource.getConnection();
             PreparedStatement pre=con.prepareStatement("select p.proyecto_id,p.nombre,p2.nombre as nombrep,p.fecha_inicio,p.fecha_fin,p.descripcion,p.monto_recaudar,(select sum(d.monto) from donacion d where d.proyecto_id = p.proyecto_id group by d.donacion_id),p2.persona_id from proyecto p JOIN donacion d on p.proyecto_id=d.proyecto_id JOIN donador d2 on d.donador_id = d2.donador_id JOIN emprendedor e on p.emprendedor_id = e.emprendedor_id JOIN usuario u on e.usuario_id = u.usuario_id JOIN persona p2 on u.persona_id = p2.persona_id where p.fecha_inicio between date(?) and date(?) OR p.fecha_fin between date(?) and date(?)")){
@@ -62,6 +66,7 @@ public class A_ProyectoDao {
                 int a = Integer.parseInt(parts[0]); // 123
                 int m = Integer.parseInt(parts[1]);
                 int d = Integer.parseInt(parts[2]);
+                System.out.println("f ---"+fecha_actual+"ff--"+res.getString("fecha_inicio"));
 
                 if(fecha_actual.equals(res.getString("fecha_inicio"))){
                     ob.setEstado("NUEVO");
@@ -77,6 +82,7 @@ public class A_ProyectoDao {
                                    ob.setEstado("FINALIZADO");
                                }else{
                                    ob.setEstado("ACTIVO");
+
                                }
                            }
                        }else{

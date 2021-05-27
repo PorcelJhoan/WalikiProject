@@ -77,6 +77,24 @@ public class A_EmprendedorController {
     @PutMapping(path="/A_Emprendedor")
     public ResponseDto ActualizarEmprendedor(@RequestBody A_Emprendedor ob) throws SQLException {
         A_Emprendedor A= gestionA_emprendedor.ActualizarEmprendedor(ob);
+        if (A.getNombre() == null || A.getNombre().trim().equals("")) {
+            return new ResponseDto( false, null, "El nombre de emprendedor debe ser obligatorio");
+        }
+        if (A.getCiudad() == null || A.getCiudad().trim().equals("")) {
+            return new ResponseDto( false, null, "La ciudad debe ser obligatorio");
+        }
+        if (A.getCorreo() == null || A.getCorreo().trim().equals("")) {
+            return new ResponseDto( false, null, "El correo  debe ser obligatorio");
+        }
+        if (A.getNumero_cuenta() == null || A.getNumero_cuenta().trim().equals("")) {
+            return new ResponseDto( false, null, "El numero de cuenta debe ser obligatorio");
+        }
+        if (A.getNumero_identificacion() == null || A.getNumero_identificacion().trim().equals("")) {
+            return new ResponseDto( false, null, "El numero de identificacion debe ser obligatorio");
+        }
+        if (A.getTelefono() == null || A.getTelefono().trim().equals("")) {
+            return new ResponseDto( false, null, "El telefono debe ser obligatorio");
+        }
         return new ResponseDto(true,A,"");
     }
 

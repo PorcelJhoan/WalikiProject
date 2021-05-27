@@ -1,1 +1,3 @@
-GET http://localhost:8083/proyecto/2021-10-10/2022-11-21
+GET http://localhost:8083/proyecto/2021-5-10/2022-11-21
+###
+GET http://localhost:8083/proyecto/2022-11-21/2021-5-10
